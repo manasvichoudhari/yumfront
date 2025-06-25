@@ -1,38 +1,51 @@
-import React from "react";
-import NavBar from "./Components/Navbar/Navbar";
-import Home from "./Components/Home/Home";
-import About from "./Components/About/About";
-import Projects from "./Components/projects/Projects";
-import Resume from "./Components/Resume";
-import Footer from "./Components/Footer/Footer";
-import Contact from "./Components/Contact";import '@fontsource/open-sans';
-import '@fontsource/roboto';
-import '@fontsource/pacifico'
-import '@fontsource/montserrat';
+import { Routes, Route,Navigate } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Navbar from './Components/Navbar';
+import { motion } from 'framer-motion'
+import Home from './components/Home'
+import Menu from './components/Menu'
+import Orders from './components/Orders'
+import Cart from './Components/Cart'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
+import UserProfile from './Components/UserProfile'
+import ForgotPassword from './Components/ForgotPassword'
+import ResetPassword from './Components/ResetPassword'
+import Account from './Components/Account'
 
-
- 
-import { Route, Routes } from "react-router-dom";
-
-
-const App = () => {
-  return (
-    <div className="bg-gradient-to-t" style={{ fontFamily: "Roboto, sans-serif",  }} >
-   
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/About" element={<About />} />
-        <Route path="/Projects" element={<Projects/>} />
-        <Route path="/Resume" element={<Resume/>} />
-        <Route path="/contacts" element={<Contact/>}/>
-        
-        
-      </Routes>
     
-  <Footer/>
-    </div>
-  );
+
+const PrivateRoute = ({ children }) => {
+const userId = localStorage.getItem('user');
+ return userId ? children : <Navigate to="/account" replace />;
 };
 
+const App = () => (
+     <div className="flex flex-col min-h-screen bg-gray-100">
+       <Navbar/>
+       <motion.main
+         className="flex-grow"
+         initial={{ opacity: 0, y: 20 }}
+         animate={{ opacity: 1, y: 0 }}
+         transition={{ duration: 0.5 }}
+       >
+        <Routes>
+           <Route path="/" element={<Home />} />
+           <Route path="/menu" element={<Menu />} />
+           <Route path="/orders" element={<Orders />} />
+           <Route path="/cart" element={<Cart />} />
+           <Route path="/contact" element={<Contact />} />
+           <Route path="/profile/:id" element={<UserProfile />} />
+           <Route path="/forgot-password" element={<ForgotPassword />} />
+           <Route path="/reset-password/:token" element={<ResetPassword />} />
+           <Route path="/account" element={<Account />} />
+           <Route path="/orders" element={<PrivateRoute><Orders /></PrivateRoute>} />
+        </Routes>
+         
+            <ToastContainer position="top-center" autoClose={2000} />
+       </motion.main>
+       <Footer />
+     </div>
+   )
 export default App;

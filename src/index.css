@@ -1,4 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;500;700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+   @tailwind base;
+   @tailwind components;
+   @tailwind utilities;
+
+   .hero-bg {
+     background-image: linear-gradient(rgba(30, 58, 138, 0.8), rgba(30, 58, 138, 0.8)), url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd');
+     background-size: cover;
+     background-position: center;
+   }
+
+   body {
+     font-family: 'Poppins', sans-serif;
+   }
+
+   h1, h2, h3 {
+     font-family: 'Roboto', sans-serif;
+   }
