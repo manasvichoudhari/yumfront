@@ -3,11 +3,11 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './Components/Navbar';
 import { motion } from 'framer-motion'
-import Home from './components/Home'
-import Menu from './components/Menu'
-import Orders from './components/Orders'
+import Home from './Components/Home'
+import Menu from './Components/Menu'
+import Orders from './Components/Orders'
 import Cart from './Components/Cart'
-import Contact from './components/Contact'
+import Contact from './Components/Contact'
 import Footer from './components/Footer'
 import UserProfile from './Components/UserProfile'
 import ForgotPassword from './Components/ForgotPassword'
